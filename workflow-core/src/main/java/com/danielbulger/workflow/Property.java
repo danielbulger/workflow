@@ -23,7 +23,7 @@ public class Property {
 	}
 
 	public boolean isAllowedType(Class<?> clasz) {
-		return clasz.isAssignableFrom(getType());
+		return clasz == type || type.isAssignableFrom(clasz);
 	}
 
 	public Class<?> getType() {

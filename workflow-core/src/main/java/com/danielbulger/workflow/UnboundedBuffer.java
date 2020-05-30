@@ -48,6 +48,7 @@ public class UnboundedBuffer<T> implements Buffer<T> {
 	@NotNull
 	@Contract(mutates = "this")
 	@Override
+	@SuppressWarnings("unchecked")
 	public T[] drain(int num) {
 
 		if (num <= 0) {

@@ -21,6 +21,11 @@ public class Edge {
 
 	@Contract(mutates = "this")
 	public void transfer(@NotNull Object element) {
+
+		if (!property.isAllowedType(element.getClass())) {
+			throw new IllegalArgumentException("Invalid type for property");
+		}
+
 		node.push(property, element);
 	}
 
