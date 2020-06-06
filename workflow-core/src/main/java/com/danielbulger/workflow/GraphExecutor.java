@@ -39,7 +39,7 @@ public class GraphExecutor {
 		// If the node isn't part of this graph
 		// either due to an error or previously
 		// removed, don't run it.
-		if(!nodes.contains(node)) {
+		if (!nodes.contains(node)) {
 			LOG.warn("Attempted to remove invalid node {}", node);
 			return;
 		}
@@ -49,7 +49,6 @@ public class GraphExecutor {
 		worker.submit(new NodeTask(node, monitor));
 	}
 
-	@Contract(mutates = "this")
 	public void addNode(final @NotNull Node node) {
 		nodes.add(Objects.requireNonNull(node));
 
@@ -58,11 +57,13 @@ public class GraphExecutor {
 
 	@Contract(mutates = "this,param1")
 	public void removeNode(final @NotNull Node node) {
+		Objects.requireNonNull(node);
+
 		// Remove the input/outputs for the node.
 		node.detach();
 
 		// Remove the node from the graph
-		nodes.remove(Objects.requireNonNull(node));
+		nodes.remove(node);
 
 		LOG.info("Removed Node {}", node);
 	}

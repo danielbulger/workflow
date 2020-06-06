@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -27,10 +28,12 @@ public abstract class Node {
 		this.executor = Objects.requireNonNull(executor);
 	}
 
-	@Contract(mutates = "this")
 	public abstract void execute() throws NodeExecutionException;
 
-	@Contract(mutates = "this")
+	public abstract Set<Property> getInputProperties();
+
+	public abstract Set<Property> getOutputProperties();
+
 	public void addInput(@NotNull Property property, @NotNull Buffer<?> buffer) {
 
 		if (inputs.containsKey(property)) {
@@ -40,7 +43,6 @@ public abstract class Node {
 		inputs.put(property, buffer);
 	}
 
-	@Contract(mutates = "this")
 	public void addOutput(@NotNull Property property) {
 
 		if (edges.containsKey(property)) {
@@ -51,7 +53,6 @@ public abstract class Node {
 
 	}
 
-	@Contract(mutates = "this")
 	public void connect(@NotNull Property property, @NotNull final Edge edge) {
 		final Collection<Edge> propertyEdges = edges.get(property);
 
@@ -62,7 +63,6 @@ public abstract class Node {
 		propertyEdges.add(edge);
 	}
 
-	@Contract(mutates = "this")
 	protected <T> void send(final @NotNull Property property, final @NotNull T value) {
 
 		Objects.requireNonNull(property);
@@ -81,7 +81,6 @@ public abstract class Node {
 
 	}
 
-	@Contract(mutates = "this")
 	public <T> void push(final @NotNull Property property, final @NotNull T value) {
 
 		Objects.requireNonNull(value);
@@ -114,7 +113,6 @@ public abstract class Node {
 		return (Buffer<T>) buffer;
 	}
 
-	@Contract(mutates = "this")
 	public void detach() {
 		inputs.clear();
 

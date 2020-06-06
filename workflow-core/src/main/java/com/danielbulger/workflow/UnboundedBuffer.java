@@ -20,7 +20,6 @@ public class UnboundedBuffer<T> implements Buffer<T> {
 	}
 
 	@NotNull
-	@Contract(mutates = "this")
 	@Override
 	public T drop() {
 
@@ -46,7 +45,6 @@ public class UnboundedBuffer<T> implements Buffer<T> {
 	}
 
 	@NotNull
-	@Contract(mutates = "this")
 	@Override
 	@SuppressWarnings("unchecked")
 	public T[] drain(int num) {
@@ -68,7 +66,6 @@ public class UnboundedBuffer<T> implements Buffer<T> {
 		return (T[]) elements;
 	}
 
-	@Contract(mutates = "this")
 	@Override
 	public void insert(@NotNull T element) {
 		queue.add(Objects.requireNonNull(element));

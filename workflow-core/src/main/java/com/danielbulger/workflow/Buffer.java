@@ -11,7 +11,6 @@ public interface Buffer<T> {
 	T head();
 
 	@NotNull
-	@Contract(mutates = "this")
 	T drop();
 
 	@Contract(pure = true)
@@ -23,9 +22,7 @@ public interface Buffer<T> {
 	int size();
 
 	@NotNull
-	@Contract(mutates = "this")
 	T[] drain(int num);
 
-	@Contract(mutates = "this")
 	void insert(@NotNull T element);
 }

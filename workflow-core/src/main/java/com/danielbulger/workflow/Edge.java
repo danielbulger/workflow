@@ -1,6 +1,5 @@
 package com.danielbulger.workflow;
 
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -19,7 +18,6 @@ public class Edge {
 		this.property = Objects.requireNonNull(property);
 	}
 
-	@Contract(mutates = "this")
 	public void transfer(@NotNull Object element) {
 
 		if (!property.isAllowedType(element.getClass())) {
