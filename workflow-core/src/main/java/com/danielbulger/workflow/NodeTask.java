@@ -1,7 +1,5 @@
 package com.danielbulger.workflow;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Objects;
 
 public class NodeTask implements Runnable {
@@ -10,7 +8,7 @@ public class NodeTask implements Runnable {
 
 	private final NodeMonitor monitor;
 
-	public NodeTask(@NotNull Node node, @NotNull NodeMonitor monitor) {
+	public NodeTask(Node node, NodeMonitor monitor) {
 		this.node = Objects.requireNonNull(node);
 		this.monitor = Objects.requireNonNull(monitor);
 	}

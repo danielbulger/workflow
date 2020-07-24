@@ -1,8 +1,5 @@
 package com.danielbulger.workflow;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
@@ -23,7 +20,7 @@ public abstract class Node {
 
 	private final Map<Property, Collection<Edge>> edges = new ConcurrentHashMap<>();
 
-	public Node(@NotNull GraphExecutor executor) {
+	public Node(GraphExecutor executor) {
 		this.id = counter.incrementAndGet();
 		this.executor = Objects.requireNonNull(executor);
 	}
@@ -34,7 +31,7 @@ public abstract class Node {
 
 	public abstract Set<Property> getOutputProperties();
 
-	public void addInput(@NotNull Property property, @NotNull Buffer<?> buffer) {
+	public void addInput(Property property, Buffer<?> buffer) {
 
 		if (inputs.containsKey(property)) {
 			throw new IllegalStateException("Property has already been registered");
@@ -43,7 +40,7 @@ public abstract class Node {
 		inputs.put(property, buffer);
 	}
 
-	public void addOutput(@NotNull Property property) {
+	public void addOutput(Property property) {
 
 		if (edges.containsKey(property)) {
 			throw new IllegalStateException("Property has already been registered");
@@ -53,7 +50,7 @@ public abstract class Node {
 
 	}
 
-	public void connect(@NotNull Property property, @NotNull final Edge edge) {
+	public void connect(Property property, final Edge edge) {
 		final Collection<Edge> propertyEdges = edges.get(property);
 
 		if (propertyEdges == null) {
@@ -63,7 +60,7 @@ public abstract class Node {
 		propertyEdges.add(edge);
 	}
 
-	protected <T> void send(final @NotNull Property property, final @NotNull T value) {
+	protected <T> void send(final Property property, final T value) {
 
 		Objects.requireNonNull(property);
 
@@ -81,7 +78,7 @@ public abstract class Node {
 
 	}
 
-	public <T> void push(final @NotNull Property property, final @NotNull T value) {
+	public <T> void push(final Property property, final T value) {
 
 		Objects.requireNonNull(value);
 
@@ -98,9 +95,8 @@ public abstract class Node {
 		executor.schedule(this);
 	}
 
-	@Contract(pure = true)
 	@SuppressWarnings("unchecked")
-	protected <T> Buffer<T> getInput(final @NotNull Property property) {
+	protected <T> Buffer<T> getInput(final Property property) {
 
 		Objects.requireNonNull(property);
 
@@ -119,7 +115,6 @@ public abstract class Node {
 		edges.clear();
 	}
 
-	@Contract(pure = true)
 	public boolean isSelfStarting() {
 		return inputs.isEmpty();
 	}

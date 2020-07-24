@@ -1,7 +1,5 @@
 package com.danielbulger.workflow;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Objects;
 
 public class Edge {
@@ -11,14 +9,14 @@ public class Edge {
 	private final Property property;
 
 	public Edge(
-		@NotNull Node node,
-		@NotNull Property property
+		Node node,
+		Property property
 	) {
 		this.node = Objects.requireNonNull(node);
 		this.property = Objects.requireNonNull(property);
 	}
 
-	public void transfer(@NotNull Object element) {
+	public void transfer(Object element) {
 
 		if (!property.isAllowedType(element.getClass())) {
 			throw new IllegalArgumentException("Invalid type for property");

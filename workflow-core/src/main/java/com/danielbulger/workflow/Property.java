@@ -1,7 +1,5 @@
 package com.danielbulger.workflow;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Objects;
 
 public class Property {
@@ -13,9 +11,9 @@ public class Property {
 	private final String description;
 
 	public Property(
-		@NotNull Class<?> type,
-		@NotNull String name,
-		@NotNull String description
+		Class<?> type,
+		String name,
+		String description
 	) {
 		this.type = Objects.requireNonNull(type);
 		this.name = Objects.requireNonNull(name);
@@ -58,7 +56,7 @@ public class Property {
 
 	@Override
 	public String toString() {
-		return "Port{" +
+		return "Property{" +
 			"name='" + name + '\'' +
 			'}';
 	}

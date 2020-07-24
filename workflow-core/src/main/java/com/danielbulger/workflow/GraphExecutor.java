@@ -1,7 +1,5 @@
 package com.danielbulger.workflow;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +19,7 @@ public class GraphExecutor {
 
 	private final NodeMonitor monitor;
 
-	public GraphExecutor(@NotNull ExecutorService worker, @NotNull NodeMonitor monitor) {
+	public GraphExecutor(ExecutorService worker, NodeMonitor monitor) {
 		this.worker = Objects.requireNonNull(worker);
 		this.monitor = Objects.requireNonNull(monitor);
 	}
@@ -32,8 +30,7 @@ public class GraphExecutor {
 			.forEach(this::schedule);
 	}
 
-	@Contract(pure = true)
-	public void schedule(final @NotNull Node node) {
+	public void schedule(final Node node) {
 		Objects.requireNonNull(node);
 
 		// If the node isn't part of this graph
@@ -49,14 +46,13 @@ public class GraphExecutor {
 		worker.submit(new NodeTask(node, monitor));
 	}
 
-	public void addNode(final @NotNull Node node) {
+	public void addNode(final Node node) {
 		nodes.add(Objects.requireNonNull(node));
 
 		LOG.info("Added Node {}", node);
 	}
 
-	@Contract(mutates = "this,param1")
-	public void removeNode(final @NotNull Node node) {
+	public void removeNode(final Node node) {
 		Objects.requireNonNull(node);
 
 		// Remove the input/outputs for the node.

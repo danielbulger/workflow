@@ -1,8 +1,5 @@
 package com.danielbulger.workflow;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 import java.util.Queue;
@@ -12,14 +9,11 @@ public class UnboundedBuffer<T> implements Buffer<T> {
 
 	private final Queue<T> queue = new ConcurrentLinkedQueue<>();
 
-	@Nullable
-	@Contract(pure = true)
 	@Override
 	public T head() {
 		return queue.peek();
 	}
 
-	@NotNull
 	@Override
 	public T drop() {
 
@@ -32,19 +26,16 @@ public class UnboundedBuffer<T> implements Buffer<T> {
 		return head;
 	}
 
-	@Contract(pure = true)
 	@Override
 	public boolean isEmpty() {
 		return queue.isEmpty();
 	}
 
-	@Contract(pure = true)
 	@Override
 	public int size() {
 		return queue.size();
 	}
 
-	@NotNull
 	@Override
 	@SuppressWarnings("unchecked")
 	public T[] drain(int num) {
@@ -67,7 +58,7 @@ public class UnboundedBuffer<T> implements Buffer<T> {
 	}
 
 	@Override
-	public void insert(@NotNull T element) {
+	public void insert(T element) {
 		queue.add(Objects.requireNonNull(element));
 	}
 }
