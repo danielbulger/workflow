@@ -1,3 +1,7 @@
 rootProject.name = 'workflow'
 
 include 'workflow-core'
+
+include 'workflow-repository'
+
+include 'workflow-example'
