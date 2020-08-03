@@ -19,10 +19,10 @@ public class NodeTask implements Runnable {
 
 		try {
 			node.doExecute();
+
+			monitor.onNodeSuccess(node);
 		} catch (Throwable t) {
 			monitor.onNodeFailure(node, t);
 		}
-
-		monitor.onNodeSuccess(node);
 	}
 }
