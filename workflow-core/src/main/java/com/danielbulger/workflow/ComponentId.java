@@ -7,6 +7,13 @@ public class ComponentId implements Comparable<ComponentId> {
 
 	private static final AtomicLong counter = new AtomicLong(0);
 
+	/**
+	 * Gets the next generated ComponentId.
+	 *
+	 * Note: This makes no guarantees that the id is not already in use.
+	 *
+	 * @return The newly generated ComponentId.
+	 */
 	public static ComponentId next() {
 		return new ComponentId(counter.getAndIncrement());
 	}
