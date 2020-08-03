@@ -35,6 +35,17 @@ public class Network {
 	}
 
 	/**
+	 * {@link #schedule(Component)} any self starting {@code Components} in this {@code Network}.
+	 *
+	 * @see Component#isSelfStarting()
+	 */
+	public void scheduleSelfStarting() {
+		nodes.stream()
+			.filter(Component::isSelfStarting)
+			.forEach(this::schedule);
+	}
+
+	/**
 	 * Schedules the {@code node} for execution.
 	 * <p>
 	 * NOTE: There is no guarantee that the {@code node} will be executed.

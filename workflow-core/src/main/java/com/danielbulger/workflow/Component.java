@@ -61,6 +61,18 @@ public abstract class Component {
 	public abstract void execute();
 
 	/**
+	 * Whether this {@code Component} is self-start or not.
+	 * A self-starting {@code Component} is any that does not
+	 * require any input to run.
+	 *
+	 * @return {@code true} is the {@code Component} has no input ports attached,
+	 * {@code false} otherwise.
+	 */
+	public boolean isSelfStarting() {
+		return inputPorts.isEmpty();
+	}
+
+	/**
 	 * Adds a new input port.
 	 *
 	 * @param portName The name of the input port.
@@ -198,7 +210,7 @@ public abstract class Component {
 
 	/**
 	 * Removes all this component's input/output ports and connections.
-	 *
+	 * <p>
 	 * Any future attempts to transmit data on this component should
 	 * raise an {@code Exception} as this component is no longer in
 	 * an accepting state.
