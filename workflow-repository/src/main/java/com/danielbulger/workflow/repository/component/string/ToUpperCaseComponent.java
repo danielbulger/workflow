@@ -1,6 +1,6 @@
 package com.danielbulger.workflow.repository.component.string;
 
-import com.danielbulger.workflow.*;
+import com.danielbulger.workflow.core.*;
 
 @Port(
 	name = "input",

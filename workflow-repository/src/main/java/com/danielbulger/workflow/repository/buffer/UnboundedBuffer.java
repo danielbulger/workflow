@@ -1,6 +1,6 @@
 package com.danielbulger.workflow.repository.buffer;
 
-import com.danielbulger.workflow.Buffer;
+import com.danielbulger.workflow.core.Buffer;
 
 import java.util.ArrayList;
 import java.util.Collection;

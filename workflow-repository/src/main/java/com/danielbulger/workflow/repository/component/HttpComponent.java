@@ -1,6 +1,6 @@
 package com.danielbulger.workflow.repository.component;
 
-import com.danielbulger.workflow.*;
+import com.danielbulger.workflow.core.*;
 
 import java.net.URI;
 import java.net.http.HttpClient;
