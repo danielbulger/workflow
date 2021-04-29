@@ -2,9 +2,7 @@ package com.danielbulger.workflow.spring.auth.oauth2;
 
 import com.danielbulger.workflow.spring.auth.UserPrincipal;
 import com.danielbulger.workflow.spring.auth.oauth2.exception.OAuth2AuthenticationProcessingException;
-import com.danielbulger.workflow.spring.model.DefaultRole;
-import com.danielbulger.workflow.spring.model.User;
-import com.danielbulger.workflow.spring.service.RoleService;
+import com.danielbulger.workflow.spring.model.user.User;
 import com.danielbulger.workflow.spring.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +15,6 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Component
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
@@ -26,16 +23,13 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
 	private final UserService userService;
 	private final OAuth2UserInfoService userInfoService;
-	private final RoleService roleService;
 
 	public CustomOAuth2UserService(
 		UserService userService,
-		OAuth2UserInfoService userInfoService,
-		RoleService roleService
+		OAuth2UserInfoService userInfoService
 	) {
 		this.userService = userService;
 		this.userInfoService = userInfoService;
-		this.roleService = roleService;
 	}
 
 	@Override
@@ -86,10 +80,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 		user.setName(userInfo.getName());
 		user.setEmail(userInfo.getEmail());
 		user.setAvatarUrl(userInfo.getAvatarUrl());
-		user.setRoles(roleService
-			.findAllDefaultRoles()
-			.stream()
-			.map(DefaultRole::getRole).collect(Collectors.toList()));
 		LOG.debug("Creating user {}", user);
 		return userService.save(user);
 	}

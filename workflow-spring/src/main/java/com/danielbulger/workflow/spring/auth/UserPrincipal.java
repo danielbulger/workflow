@@ -1,7 +1,6 @@
 package com.danielbulger.workflow.spring.auth;
 
-import com.danielbulger.workflow.spring.model.Role;
-import com.danielbulger.workflow.spring.model.User;
+import com.danielbulger.workflow.spring.model.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -9,7 +8,6 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class UserPrincipal implements OAuth2User, UserDetails {
 
@@ -68,10 +66,7 @@ public class UserPrincipal implements OAuth2User, UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return user.getRoles()
-			.stream()
-			.map(Role::toGrantedAuthority)
-			.collect(Collectors.toList());
+		return user.getGrantedAuthorities();
 	}
 
 	@Override

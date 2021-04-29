@@ -1,7 +1,7 @@
 package com.danielbulger.workflow.spring.auth.oauth2;
 
 import com.danielbulger.workflow.spring.config.OAuth2Config;
-import com.danielbulger.workflow.spring.http.Cookies;
+import com.danielbulger.workflow.spring.model.http.Cookies;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;

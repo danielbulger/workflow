@@ -1,4 +1,4 @@
-package com.danielbulger.workflow.spring.http;
+package com.danielbulger.workflow.spring.model.http;
 
 import org.springframework.util.SerializationUtils;
 

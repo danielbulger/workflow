@@ -2,7 +2,7 @@ package com.danielbulger.workflow.spring.auth.token;
 
 import com.danielbulger.workflow.spring.auth.CustomUserDetailsService;
 import com.danielbulger.workflow.spring.config.TokenConfig;
-import com.danielbulger.workflow.spring.http.Cookies;
+import com.danielbulger.workflow.spring.model.http.Cookies;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

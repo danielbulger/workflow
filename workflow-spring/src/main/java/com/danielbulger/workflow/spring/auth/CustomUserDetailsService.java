@@ -1,6 +1,6 @@
 package com.danielbulger.workflow.spring.auth;
 
-import com.danielbulger.workflow.spring.model.User;
+import com.danielbulger.workflow.spring.model.user.User;
 import com.danielbulger.workflow.spring.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

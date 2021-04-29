@@ -1,12 +1,11 @@
 package com.danielbulger.workflow.spring.service.db;
 
-import com.danielbulger.workflow.spring.model.Role;
-import com.danielbulger.workflow.spring.model.User;
+import com.danielbulger.workflow.spring.model.user.User;
 import com.danielbulger.workflow.spring.repository.UserRepository;
 import com.danielbulger.workflow.spring.service.UserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -19,13 +18,13 @@ public class DBUserService implements UserService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public Optional<User> findByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public boolean existsByEmail(String email) {
 		return userRepository.existsByEmail(email);
 	}

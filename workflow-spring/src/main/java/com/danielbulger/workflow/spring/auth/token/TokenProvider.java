@@ -2,7 +2,7 @@ package com.danielbulger.workflow.spring.auth.token;
 
 import com.danielbulger.workflow.spring.auth.UserPrincipal;
 import com.danielbulger.workflow.spring.config.TokenConfig;
-import com.danielbulger.workflow.spring.http.Cookies;
+import com.danielbulger.workflow.spring.model.http.Cookies;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.slf4j.Logger;
@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.time.Duration;
 import java.util.Date;

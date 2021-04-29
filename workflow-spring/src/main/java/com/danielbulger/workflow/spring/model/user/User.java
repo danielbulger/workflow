@@ -1,8 +1,11 @@
-package com.danielbulger.workflow.spring.model;
+package com.danielbulger.workflow.spring.model.user;
+
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class User {
@@ -26,8 +29,19 @@ public class User {
 	@Column(nullable = false)
 	private String avatarUrl;
 
-	@OneToMany(fetch = FetchType.EAGER)
-	private List<Role> roles;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+		joinColumns = @JoinColumn(name = "user_id"),
+		inverseJoinColumns = @JoinColumn(name = "user_group_id")
+	)
+	private Set<UserGroup> userGroups;
+
+	public Set<? extends GrantedAuthority> getGrantedAuthorities() {
+		return userGroups.stream()
+			.map(UserGroup::getPermissions)
+			.flatMap(Set::stream)
+			.collect(Collectors.toSet());
+	}
 
 	public long getId() {
 		return id;
@@ -77,12 +91,12 @@ public class User {
 		this.avatarUrl = avatarUrl;
 	}
 
-	public List<Role> getRoles() {
-		return roles;
+	public Set<UserGroup> getUserGroups() {
+		return userGroups;
 	}
 
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
+	public void setUserGroups(Set<UserGroup> userGroups) {
+		this.userGroups = userGroups;
 	}
 
 	@Override
